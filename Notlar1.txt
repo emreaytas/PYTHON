@@ -1,1 +1,136 @@
 
+tek tırnak ile çift tırnak arasında bir fark yok ikisininde olmasının sebebi birini birinin içinde kullanabilmek için. sql'de de böyle.
+
+eğer vscode içinde çnce uzantı sonra dosya ismi yazarsak eğer o dosya çalışır. 
+mesela python proje1 veya py proje1 
+
+pythonda yorum satıları # ile yapılır """ yazi """ altı tırnak arasına ise çoklu yorum satırı yapabiliriz... c ve javada // tekli yorum satiri /*yazi*/ çoklu yorum satırı yapısı olur.
+
+""" yorum satırları """ veya ''' yorum satırları ''' # tek satır.
+öbürlerinde ise // /**/ ile olur.
+
+True ve False bool değerlerdir. koşullar için kullanılır if True: çalışır, if False: çalışmaz.
+
+pythonda bir veri oluştururken tipini belirtmeye gerek yok. mesela a = [] yaparsak eğer liste olur. a = 5 yaparsak eğer sayı olur. tipi sonradanda değişebilir mesela a = 5 dedik sonra a = True veya False dedik.
+    yani bir verinin tipinin önemi yok aynı değişkene farklı tipten veriler atayabiliriz. c ve javada ise her birinin veri tipini belirlemek lazım.
+     
+
+###...python objeleri ve veri tipleri...###############################################################################################################################################################
+
+//...pythonda sayı veri tipleri...//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+int tam sayıdır. 
+float ise noktalı sayılar.
+type() metotu içerisine verimizi girersek bize tipini return eder. mesela type(2) int tipini verir type(3.4) ise float verisini döner bize.
+
++ toplama
+- çıkarma
+* çarpma
+/ bölme
+% mod alma(kalanı buluruz) 15 % 4 mesela 3 verir.
+** üs alma 3 ** 4 mesela 81.
+// tam bölme noktadan sonrası komple sıfır mesela 15 // 4 = 3 olur.
+
+değişken adları fonksiyopn adları vs sayı ile başlamaz. genel olarak.
+
++= kalıcı toplama    a += b ... a'ya kalıcı b ekle
+-= kalıcı çıkarma   
+/= kalıcı bölme     
+//= kalıcı tam bölme  
+**= kalıcı üs alma... aslında bu işlem= mantığı şu işlemi ve atamayı aynı anda yap demek.
+
+
+stringlerde toplama yan yana yapıştırma olur sırasına göre.
+    b = " emre"
+    c = "arif"
+    c += b
+    print(c) #arif emre
+
+tek satırda birden fazla atama yapabiliriz.
+   mesela x,y,z = (2,3.4,"emre") böylece tek satırda birden fazla atama yapmış olduk.
+
+input fonksiyopu ile aldığımız değer default olaraka stringdir...
+
+matematiksel bir toplama olursa işlem sonucunu verir ama String üzerinde toplama yaparsak eğer o zaman yan yana yazdırma yapar.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///...Veri tipi dönüşümleri.../////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+x = input("Birinci sayiyi giriniz: ") # 11 girdik
+y = input("İkinci sayiyi giriniz: ") # 22 girdik
+toplam = x + y dersek eğer o zaman 1122 yazar bize çünkü input String olarak alır...
+    ya toplam = int(x) + int(y) veya inpputları int içine almamız gerekecekti...
+
+c ve javada tip dönüşümü yaparken oldurmak istediğimiz veritipini parantez içinde verinin soluna koyardık. burada içine alıyoruz... c ve java (int)floatdeğer   python için ise int(float)...
+
+type() fonksiyonu ile verilerin tipini öğrenebiliriz...
+   a = input("deger gir: ")
+   if str(type(a)) == "<class 'str'>": #bir değer return eder type ffonksiyonu ve str içine alır tip dönüşümü yaparsak eğer o zaman  
+      print("True") #True çalışacak.
+   else:
+      print("False")
+
+if ... elif ... else  mantık diğer dillerle aynıdır ama sadece elif else if değil. sadece bir tane koşul çalışır ilk gelen çalışır sonra biter mantığı burada da devam eder.
+while koşul: diğer dillerle aynı koşul false olduğu zaman biter.
+
+a = 5.0
+eğer if a == int(a):  yaparsak bu if bloğu çalışır.
+
+mesela int ile float toplar bir değişkene atarsak eğer değişken float olur. noktadan sonrası önemli değik float ile int toplanır bir değişkene atanırsa değişken float olur.
+
+True'nin sayı hali 1 False'nin int hali ise 0.
+    koşul ifadelerinde int olan 0 False geri kalan int'ler ise True verir. c'de olduğu gibi...
+
+
+a,b = True,False
+a = str(a)
+b = str(b) 
+   böyle olursa eğer True ve False yazısı elde ederiz.
+
+r * r = r ** 2
+ 
+try:
+    a = float(input("Yaricapi giriniz: "))
+    pi = 3.14
+    print("Alan: "+ a ** 2 * pi) # yazdirma mantığı java ile aynı + ile grup grup yazdırma yapabiliriz.
+    print("Cevre: "+ 2 * pi * a) # burada pi'nin calisabilmesi icin bellekte olusmus olmali ya bir fonksiyon ile olusup gelecek veya önceden tanimlanmis olacak.
+except:
+    print("Olmadi bu ya...") # hata bloğu oluşturduk.
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///Pythonda karakter dizileri ve string.../////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+mesela name = "emre" dedik aslında 4 tane karakterin birleşimidir. c dilinde olduğu gibi.
+\n çoğu dilde aşağı satıra in komutudur.
+\t ise alta inmeden araya boşluk at demektir.
+
+tıpkı c dilinde olduğu gibi istenen sıradaki karaktere ulaşmak istersek eğer string[istenenindex] yapısı ile istenen indexteki karaktere ulaşabiliriz. 
+    eğer olmayan bir index girersek o zaman hata verir.
+    indexler her zamanki gibi sıfırdan başlar.
+    len fonksiyonu bize bazı yapıların uzunluğunu inr değer olarak return eder.
+    mesela son karakter için print(yazi[len(yazi) - 1]) ...bu şekilde son karaktere ulaşabiliriz.
+    
+    yazi[baslangicindexi:bitisindexi] bu şekilde olursa başlangic indexinden bitis indexine kadar olan kısmı getirir.
+    yazi[baslangicindexi:] böyle olursa eğer baslangicindexi dahil sona kadar gider
+    yazi[:bitis indexi] bitis indexindeki yazi olmadan en baştan bitis indexine kadar gider ama bitis indexindeki dahil olmaz
+    yazi[::artismiktari] bu şekilde olursa eğer diğer kurallar geçerli ama istenen karakter kadar atlama yaparak ulaştırma yapabiliriz.
+    yaziyi tersten işlemlemek için ise yazi[sondanbasagidecekindex(dahilolacak):gidilecekindex(dahildeğil):gerigidişmiktari] mesela yazi[len(yazi)-1: :-1]
+    yazi[:a:] nereden gelirsen gel a kısmının indexi dahil değil orası sınır.
+    
+    f"{bölge1}{bölge2}" bu yapı ile string ve işlem vs birleştirme yapabiliriz. f'{bölge1}{bölge2}' gibi bir sistem ile kullanabiliriz. 
+       veya "isim: {bölge1}, soyisim{bölge2}".format(isim,soyisim) .format(veriler) ile biz {}'ler içerisine sırası ile istenen verileri koyabiliriz.
+    
+    b = 5.6464564
+    print(f"{b:1.2}") 
+         #burada olan ise noktadan sonra kaç tane rakam olacak gösterir.
+         1.2 yapınca 2 tane noktadan sonra olan gelecek. 1 ise sayının kendisi ama değişirse o zaman başa gelecek olan boşluğu belirleriz.
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+##################################################################################################################################################################
