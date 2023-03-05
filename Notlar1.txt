@@ -1,4 +1,3 @@
-
 tek tırnak ile çift tırnak arasında bir fark yok ikisininde olmasının sebebi birini birinin içinde kullanabilmek için. sql'de de böyle.
 
 eğer vscode içinde çnce uzantı sonra dosya ismi yazarsak eğer o dosya çalışır. 
@@ -11,6 +10,8 @@ pythonda yorum satıları # ile yapılır """ yazi """ altı tırnak arasına is
 
 True ve False bool değerlerdir. koşullar için kullanılır if True: çalışır, if False: çalışmaz.
 
+pythonda javadaki gibi "yazi" + "yazi" + sayi gibi işlem olamaz hepsi string olmalı. sayılarla stringi aynı anda kullanabilmek için yapılması gereken f"" veya f'' veya "{}{}{}".format(sira1,sira2,sira3) yapısını kullanmaktır.
+ 
 pythonda bir veri oluştururken tipini belirtmeye gerek yok. mesela a = [] yaparsak eğer liste olur. a = 5 yaparsak eğer sayı olur. tipi sonradanda değişebilir mesela a = 5 dedik sonra a = True veya False dedik.
     yani bir verinin tipinin önemi yok aynı değişkene farklı tipten veriler atayabiliriz. c ve javada ise her birinin veri tipini belirlemek lazım.
      
@@ -120,6 +121,10 @@ tıpkı c dilinde olduğu gibi istenen sıradaki karaktere ulaşmak istersek eğ
     yaziyi tersten işlemlemek için ise yazi[sondanbasagidecekindex(dahilolacak):gidilecekindex(dahildeğil):gerigidişmiktari] mesela yazi[len(yazi)-1: :-1]
     yazi[:a:] nereden gelirsen gel a kısmının indexi dahil değil orası sınır.
     
+    ters mevzuda ise
+    mesela yazi[-1] demek en sondaki karakter demek yazi[-2] demek en sonun bir önü demek 
+    yazi = "emre" olsun yazi[-1] e , yazi[-2] r yazi[-3] m yazi[-4] e olur...
+ 
     f"{bölge1}{bölge2}" bu yapı ile string ve işlem vs birleştirme yapabiliriz. f'{bölge1}{bölge2}' gibi bir sistem ile kullanabiliriz. 
        veya "isim: {bölge1}, soyisim{bölge2}".format(isim,soyisim) .format(veriler) ile biz {}'ler içerisine sırası ile istenen verileri koyabiliriz.
     
@@ -128,9 +133,296 @@ tıpkı c dilinde olduğu gibi istenen sıradaki karaktere ulaşmak istersek eğ
          #burada olan ise noktadan sonra kaç tane rakam olacak gösterir.
          1.2 yapınca 2 tane noktadan sonra olan gelecek. 1 ise sayının kendisi ama değişirse o zaman başa gelecek olan boşluğu belirleriz.
 
+bir stringi çarpmak demek yan yana yapıştırmak demek..
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////...String metotları...///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+mesela yazi = "hello there. my name is emre"
+yazi.upper() # yazilar caps locklu olarak yazilir. kalici bir değişim olması için ise yazi = yazi.upper() olmali.
+yazi.lower() # yazilar kalıcı olarak capslockun tersi olarak değişir. kalıcı bir değişim olması için ise yazi = yazi.lower()
+yazi.title() # bunu yaparsak eğer her kelimenin baş harfi büyük olur. kalıcı bir değişim olması için ise yazi = yazi.title() olmali.
+yazi.capitalize() # sadece sıfırıncı indexi caps locklu olarak yapar. kalıcı değişim için ise yazi = yazi.capitalize() olmali.
+
+mesela kullanıcıdan bir veri aldık ve kullanıcı başına boşluk koydu hata verdirebilir(mesela parola ise) bunun için ise yazi = yazi.strip() #böylece hem baştaki hemde sondaki boşlukları atar. "  emre  " "emre" olur gibi.
+    sadece soldaki boşluklar için yazi = yazi.lstrip()
+    sadace sağdaki boşluklar için yazi = yazi = rstrip()
+    strip ile istenmeyen değerleride silebiliriz. mesela yazi = yazi.strip('w.moc') #  bunu girersek eğer w . m o c karakterlerinin hepsini siler.
+
+split ise bölme metotudur. eğer yazi = yazi.split yaparsak o zmana default olarak boşluğa göre böler ve bir listeye atar tüm karakter dizilerini. 
+   ama mesela split ile bir bölme yaptık ve virgüle göre ayırma yaptık virgüller dahil olmayacak elde edilen karakter dizilerine.
+
+eğer içinde karakter dizileri olan bir listenin elemanlarını birleştirip bir tane string elde etmek istersek o zaman yazi(birleştirmesonucuoluşacakstr) = 'birleşirkenarayagelecekolan'.join(birleştirilecekliste) # eğer 5 eleman var 4 tane arayaglecekeleman kullanilir.
+
+mesela cümle içerisinde bir cümle arıyoruz ve var mı yok mu bilmek istiyoruz. index = yazi.find('emre') # bize döneceği değer içeri koyduğumuz karakter veya karakter dizisinin ilk elemanının indexidir. eğer aranan karkater veya karakter dizisi yoksa -1 döner.
+    deger = yazi.find("aranan",baslangic,bitis) # başlanguç ve bitis indexleri ile o aralıkta istenen karakter veya karakter dizisi var mı yok mu görebiliriz. yoksa -1 döner.
+    rfind ise sağdan aramaya başlar.
+    int = yazi = yazi.rfind('aranan') # böylece en sağdaki arananın başlangıç indexini verir.
+
+isfound = yazi.startswith('h') # eğer yazi istenen karakter veya karkater dizisi ile başlıyorsa o zaman True döner eğer değilse False döner.
+    endswith ile ise bunun sondaki kısmı halini kontrol ederiz. 
+
+yazi = yazi.replace('gidecek','gelecek') # bu fonksiyon ile istenmeyenlerin yerine kendi istediklerimizi yerleştiririz. mesela yazi = yazi.replace('.',',') #noktalar virgül olur.
+    yazi = yazi.replace('.','..').replace('e','t').replace('m','yy') # böyle yaparsak ise birden fazla karakter veya karakter dizisi değişimi yapabiliriz. birden fazla replace'yi ard arda kullanabiliriz.
+    yazi = yazi.replace('.','-',5) # eğer böyle yaparsak sadece 5 tanesini değiştirir. en soldan itibaren. kaç tanesinin dseğişeceğini belirleyebiliriz.
+
+yazi = yazi.center(50) dersek eğer 50 sağ 50 solda boşluk bırakır ve yazımızı ortalar.
+    yazi = yazi.center(50,'*') sağa 50 yıldız solda 50 yıldız koyar ve yazımızı ortalar.
+
+int adet = yazi.count('karakterveyakarakterdizisi') # böylece içerisinde kaç tane karakter dizisi var görebiliriz.
+
+isalpha() ile aritmetiklik sorgularız.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///...Pythonda Listeler.../////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+[] ile listeler tanımlanır. dinamiktir. eleman sayısı sürekli olarak değişebilir.
+   a = ["emre",5,12,"1111"]
+      print(a) # böyle dersek eğer elemanların hepsini yazdırır.
+
+list1 = ["emre","aytas","ford","tr"]
+list2 = ["rrr","adstas","dddd","tdddd"]
+liste3 = list1 + liste2 # bunu yaparsak eğer liste3 list1',in sağına liste2'nin koyulmuş hali olur. tüm değerleri kaplar eleman sıralaması ise önce solda toplanan sonra sağdaki elemanlar olur.
+
+intDeger = len(list1) ile kaç tane eleman var görebiliriz.
+print(len(liste1[0])) # hatta içindeki bir değerin uzunluğuna index'i ile erişebiliriz.
+
+print(list1[0][1]) # m değeri gelir. 0. indexteki elemanın 1. indexteki elemanı gelir.
+
+mesela 
+   user1 = ["emre",20]
+   user2 = ["ford",7]
+
+   user3 = user1 + user2 === ["emre",20,"ford",7]
+   user3 = [user1,user2] === [["emre",20],["ford",7]] # liste içerisine liste koyabiliriz...
+       print(user3[1][0][2]) # r değeri döner. 2. listenin birinci elemanının 3. elemanı.
+
+mesela bir liste var ve değeri değiştirirken direkt olarak liste[-1](son eleman) = "yenideğer"
+
+listenin veya string'lerin son elemanına ulaşabilmek için listeveyastr[-1] ile ulaşabiliriz -2 ile ise sondan bir öncekine ulaşabilirsin.
+     
+    liste = ["Bmw","Mercedes","Opel","Mazda"]
+    yazi = "emreemree"
+    result = 'm' in yazi
+    result1 = "toyota" in liste
+    print(str(result) + " " + str(result1)) #True ve False yazar in ile bir str veya list içerisinde bir değer var mı yok mu arayabiliriz...
+
+liste = ["Bmw","Mercedes","Opel","Mazda"]
+liste[-1] = "Renault"
+liste[-2] = "Toyota"
+print(liste)      # bu şekilde atama yaparsak eğer kalıcı bir değişim olur.
+
+bir listeye liste[-2:] = ["ford","bmc"] böylece son iki eleman değişir.
+liste.append(eleman) böylece en sona eleman ekleriz. 
+
+liste += ["ford","bmc"] # böylece son kısma yen iki eleman ekleriz.
+
+len(tuple,str,list vs) ile eleman uzunluklarını görürürüz.
+
+value = min(list,tuple vs) en küçük değeri buluruz. str olursa ascii'ye göre en küçük olanı alır.
+value = max(list,tuple vs) en büyük değeri getirir. return ile str olursa ascii'ye göre en büyüğünü getirir.
+
+kesikliste = liste[3:6] bunu yaparsak eğer 3.indexten 6.indexe kadar olan elamanları alır. 6.index dahil değil.
+kesikliste2 = liste[:4] 0 1 2 3. indexlerdeki değerler ile kesik bir liste oluştur demek.
+
+liste.append() ile en sona eleman ekleriz.
+
+eğer istenen indexe eleman eklemek istersek o zaman liste.insert(index,isteneneleman)
+   en sona eleman eklemek istersek eğer liste.insert(-1,eleman) en sona eleman eklenir.
+
+liste.pop() ile en sondaki eleman çıkarılır. 
+liste.pop(index) ile istenen indexteki eleman çıkarılır.
+liste.sort() //bunu yaaprsak eğer listeyi küçükten büyüğe sıralar. kalıcı bir değişim sağlanır. liste.sort() ile küçükten büyüğe sıralar.
+liste.reverse() dersek eğer listeyi ters çeviririz en sondaki en başa gelir.   sort() ve reverse() kalıcı değişim oluşturur. return etmez.
+
+kactane = liste.count(aranandeger) bu bixze aranan elemandan kaç tane olduğunu gösterir. yoksa 0 return eder.
+
+liste.remove(deger) ile istenen değeri kalıcı olarak temizleriz. ama eğer değer yoksa içeride hata verir.
+liste.clear() yaparak ise bir listenin tüm elemanlarını temizleriz. 
+...............................................
+l = [1, 4, 6, 2, 6, 1]
+
+print("List before calling del:")
+print(l)
+
+del l[3]
+
+print("List after calling del:")
+print(l)
+...............................................
+
+index = name.index("Ali") // bir listedeli elemanın indexini bulmak için. liste.index(eleman) deriz ve indexi bize return eder.
+
+split ile bir stringi böldüğümüz zaman bize bir liste döner. liste = stra.split(',') böylece. vürgüle göre bölme olur ama virgül dahil olmaz.
+
+liste.insert(-1,eleman) ile en sona eleman ekleriz.
+
+...............................................
+booldeger = "Emre" in name
+booldeger1 = "Ali" in name
+    in ile bir stringde veya listede aranan eleman var mı yok mu görebiliriz.
+...............................................
+
+names.append(input("Deger giriniz: ")) # bu şekilde yaparsak eğer direk olarak input sayesinde return ile gelen değeri listeye ekleyebiliriz.
+
+type() fonksiyonu ile biz içine gönderdiklerimizin tipini görebiliriz.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////pythonda tupple////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+listeler [] ile tuple () ile belirlenir.
+
+tuple bir kere tanımlanıp elemanları değişmeyen bir liste gibidir. 
+
+tuple bir kere oluşur elemanları değişmez.
+
+tuple1 = ("mercedes","bmw","ford")
+tuple1[0] = "mclaren" #bunu yaparsak hata alırız. çünkü elemaları sabit kalacak.
+
+static bir liste gibidir.
+
+tuple1 = ("emre","aytas","ford")
+tuple2 = ("gustavo","fring","mclaren") + tuple1 # böylece iki tuple birleştirebiliriz. buna izin verir. sırası ile ilk ("gustavo","fring","mclaren") sonra tuple1 eklenir.
+ 
+sonradan eleman ekleme silme gibi metotlar yok.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///pythonda dictionary/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+{} ile tanımlanır . key ve valueler yani bu gruplar , ile ayrılır key:value,key:value gibi bir yapı vardır. 
+
+key value ilişkisi vardır.
+
+...............................................
+names = ["emre","arif","ford","asya"]
+surnames = ["aytas","aytas","focus","liya"]
+
+for i in names:
+    print(i + " " + surnames[names.index(i)])
+
+print(surnames[names.index("ford")]) 
+
+ama eğer dictionary mantığı olursa o zaman key isim value soyisim olacak. mesela dict1 = {"emre":"aytas","ford":"focus"} # bu mantık ile işlemesi lazım. bunun nedeni key ve value mantığı ile olur.
+     print(dict1["emre"]) #yaparsak eğer o zaman bize valueyi return eder.
+     print(dict1["ford"]) #yaparsak o zmaan dict1["ford"] bize "focus" return eder.
+     bir dictionary'e eleman eklemek istersek eğer o zaman dict1["bmw"] = "M5" # yaparsak eğer o zaman yeni bir eleman eklemiş oluruz bir key ekleriz ve key'e value ataması yaparız.
+
+
+...............................................
+   
+     
+     dictionary içide valueler farklı tiplerden keyler farklı veri tiplerinden olabilir.
+     mesela bir key'e bir dictionary atayabiliriz.
+
+users ={
+    
+    "emre":{
+       "isim":"emre",
+       "soyisim":"aytas",
+       "yas":20
+    }
+,
+    "ford":{
+       "isim":"ford",
+       "soyisim":"focus",
+       "yas":7
+    }
+
+}
+..................................................
+users ={
+    
+    "emre":{
+       "isim":"emre",
+       "soyisim":"aytas",
+       "yas":20
+    }
+,
+    "ford":{
+       "isim":"ford",
+       "soyisim":"focus",
+       "yas":7
+    }
+
+}
+
+print(users["emre"]["isim"])
+print(users["emre"]["yas"])
+
+# burada olan ise şudur users["emre"] ile emrenin value'si return edilir. value[key] ile ise value'nin value'si elde edilir.
+
+     users["emre"] = {       "isim":"emre",
+            "soyisim":"aytas",
+            "yas":31} #burada olan ise key'in value'sini güncelleriz. olmayan bir key tanımlarsak bu şekilde o zaman yeni bir key value grubu oluşur.
+
+eğer dictionary[key] yaparsak bu bize value'yi return eder.
+..............................................
+
+veya mesela 
+   users = {
+
+      "emre" = {
+
+         "isim":"emre",
+         "roller":["admin","user","bot"]
+      }
+
+   } # burda biz bir value'ye dictionary atadık. ve bu dictionary içindeki bir keye ise biz liste atadık.
+     # users["emre"]["roller"][0] burada biz "admine ulaşırız". users["emre"] emre'nin valuesi olan dictionaryi return eder. users["emre"]["roller"] ile ise returnle gelen dict'in roller'in value'si olan list return edilir. users["emre"]["roller"][0] burada en son gelen listenin istenen elamanını return ile getirebiliriz.
+
+bir dict içerisinde birden fazlaaynı key olabilir ama aynı olan keylerde hangi values çalışacak o zaman en son eklenen geçerli olacak.
+
+dictionary içinde key'lerin valuelerini değiştirmek istersek eğer o zaman 
+
+dict1.update(
+{
+     key:{
+        değişicekdeğerler...
+     },
+
+     başkakey:
+     {
+        yenideğerler....
+     }
+
+}
+)# bu yapı ile güncelleme yapabiliriz.
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////pythonda Sets////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+pythonda setslerde dictionary gibi {} ile tanımlanır ama key value ilişkisi yoktur..
+
+fruits = {"apple","orange","banana","avocado","watermelon"} # bu şekilde {} içinde key value ilişkisi olmadan bir tanımlama olur.
+
+fruits[0] gibi bir tanımlama şekli yoktur.
+
+döngüler ile üzerilerinde dönülür genellikle.
+
+eleman ekleme fruits.add(eleman) ile olur.
+fruits.update(["mango","grape"]) # .update(liste) ile liste elemanları set içerisine girer hepsi.
+
+mesela listem = [1,2,2,23,3,5,5,6,6,752] yaparsak ve
+    print(set(listem)) #yaparsak her elemandan bir tanenin olduğu set batırılır. yani bir listeyi biz set'e çevirebiliriz.
+
+set üzerinden eleman silmek istersek eğer fruits.remove("mango") veya fruits.discard("apple") 
+    #remove olanı siler eğer silinmesi istenen eleman yoksa hata verir. ama discard varsa siler yoksa hata yollamaz devam eder.
+
+fruits.pop() # ile herhangi bir elaman silinebilir listedeli gibi en sondaki eleman silinmez.
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////Value ve referans tipleri///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 ##################################################################################################################################################################
+
