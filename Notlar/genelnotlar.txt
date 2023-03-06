@@ -20,7 +20,7 @@ python dosyalarının uzantısı .py javanın .java c'nin ise .c
 \”	Çift tırnak
 \\	Ters eğik çizgi (backslash)
 \	Çok satırlı stringlerde yeni satır
-\t	tab (yatay boşluk)
+\t	tab (yatay boşluk) alt satıra geçirmez.
 \n	Satır başı
 
 
